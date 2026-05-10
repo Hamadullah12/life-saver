@@ -11,6 +11,13 @@ from agents.safety_reviewer import review_and_confirm
 
 st.set_page_config(page_title="Life Saver", layout="wide", page_icon="🩸")
 
+# ── Load Secrets for Cloud Deployment ──────────────────────
+# This ensures agents can see keys set in Streamlit Cloud Secrets
+for key in ["OPENAI_API_KEY", "TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN", 
+            "TWILIO_PHONE_NUMBER", "SENDGRID_API_KEY", "GOOGLE_MAPS_API_KEY"]:
+    if key in st.secrets:
+        os.environ[key] = st.secrets[key]
+
 # ── Minimalist CSS ─────────────────────────────────────────
 st.markdown("""
 <style>
