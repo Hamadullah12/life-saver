@@ -16,7 +16,8 @@ st.set_page_config(page_title="Life Saver", layout="wide", page_icon="🩸")
 for key in ["OPENAI_API_KEY", "TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN", 
             "TWILIO_PHONE_NUMBER", "SENDGRID_API_KEY", "GOOGLE_MAPS_API_KEY"]:
     if key in st.secrets:
-        os.environ[key] = st.secrets[key]
+        # Strip any accidental quotes or spaces
+        os.environ[key] = str(st.secrets[key]).strip().strip('"').strip("'")
 
 # ── Verify Critical Keys ───────────────────────────────────
 if not os.environ.get("OPENAI_API_KEY"):
