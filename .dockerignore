@@ -1,11 +1,10 @@
-.git
 .env
-__pycache__
+__pycache__/
 *.pyc
-venv
-.venv
-.vscode
-.idea
+*.pyo
+*.pyd
+.DS_Store
+.git/
 .gitignore
 README.md
-Dockerfile
+tmp/
