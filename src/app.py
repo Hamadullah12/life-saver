@@ -18,6 +18,11 @@ for key in ["OPENAI_API_KEY", "TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN",
     if key in st.secrets:
         os.environ[key] = st.secrets[key]
 
+# ── Verify Critical Keys ───────────────────────────────────
+if not os.environ.get("OPENAI_API_KEY"):
+    st.error("⚠️ **Critical Error:** OpenAI API Key not found. Please add it to the **Secrets** section in your Streamlit Cloud dashboard.")
+    st.stop()
+
 # ── Minimalist CSS ─────────────────────────────────────────
 st.markdown("""
 <style>
